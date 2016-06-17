@@ -32,26 +32,16 @@ class NBA_game:
 #            self.gameIndex.append(str(playerID)+'_x')
 #            self.gameIndex.append(str(playerID)+'_y')
 #            self.gameIndex.append(str(playerID)+'_z')
-#
-
-
 #        self.momentCnt=0
 #        for event in self.rawGame["events"]:
 #            for moment in event["moments"]:
 #                if moment:
 #                    self.momentCnt+=1
-
-        ###########################################################################3
-
-
-
-
-
+###########################################################################
         self.homePlayers=pd.DataFrame(rawGame["events"][0]["home"]["players"])
         self.awayPlayers=pd.DataFrame(rawGame["events"][0]["visitor"]["players"])
 
         self.players=self.homePlayers.append(self.awayPlayers,ignore_index=True)
-        
         
     ##getEventData##
     #Returns: a tuple containing True and a Pandas Dataframe if the specified event ID is found in the game.
@@ -64,24 +54,18 @@ class NBA_game:
             #If a player ID in players is not active in the event (not on the court), that player ID will not be present in the returned dataframe.
             #If a player ID is only active (on the court) for some of the moments within the event, the dataframe will contain a column for the player
             #with Nan values for the moments the player ID is not active. 
-	        
-        
-        
-        
     def getEventData(self,eventID,ball=False,time=False,players=False):
         for event in self.rawGame["events"]:
-            emptyMom=False
             if event["eventId"]==str(eventID):
-                tmp=0
+                firstMoment=True
                 target_event=[]
                 for moment in event["moments"]:
                     if moment:
-                        if tmp==0:
+                        if firstMoment:
                             target_event=nbaMoment.NBA_moment(moment,event['eventId'],ball,time,players).momentDF
-                            tmp+=1
+                            firstMoment=False
                         else:
                             target_event=target_event.append(nbaMoment.NBA_moment(moment,event['eventId'],ball,time,players).momentDF,ignore_index=True)
-                            tmp+=1
                 if len(target_event)==0:
                     return False,[]
                 else:
