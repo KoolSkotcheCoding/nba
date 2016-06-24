@@ -17,8 +17,11 @@ class NBA_moment:
         if rawMoment:
             self.momentDict={}
             if time is not False:
-                self.momentDict['gameClock']=rawMoment[2]
-                self.momentDict['shotClock']=rawMoment[3]
+                #self.momentDict['gameClock']=rawMoment[2]
+                #self.momentDict['shotClock']=rawMoment[3]
+                self.momentDict[('time','gameClock')]=rawMoment[2]
+                self.momentDict[('time','shotClock')]=rawMoment[3]
+
             if ball is not False or playerList is not False:
                 for player in rawMoment[5]:
                     if player[1]==-1 and ball is True:
@@ -29,4 +32,9 @@ class NBA_moment:
                         if player[1] in playerList.values:
                             self.momentDict[(player[1],'x')]=round(player[2],2)
                             self.momentDict[(player[1],'y')]=round(player[3],2)
-            self.momentDF=pd.DataFrame(self.momentDict, index=[0])
+            
+            #index=pd.MultiIndex.from_tuples(self.momentDict.keys(),names=['playerId','dimension'])
+            #self.momentDF=pd.DataFrame(self.momentDict.values(),index=index)
+            #self.momentDF=pd.DataFrame(self.momentDict, index=[0])
+            #index=pd.MultiIndex.from_tuples(self.momentDict.keys())
+            self.momentDF=pd.DataFrame(self.momentDict,index=[0])
