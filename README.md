@@ -5,7 +5,7 @@ In addition to analytical tools, this project also includes visualization method
 
 
 ## Background
-The NBA, in collaboration with Sports VU, has released an API for retrieving the player movement data. **Note, as of 6/25/2016 the NBA was reporting technical issues with the API and no data could be retrieved. However, neilmj has created a repository containing the first half of the 2015-2016 season (https://github.com/neilmj/BasketballData). I plan to move a few games into this project for example/testing purposes.** This project was inspired by the ipython notebook created by Savvas Tjortjoglou (http://savvastjortjoglou.com/nba-play-by-play-movements.html).
+The NBA, in collaboration with Sports VU, has released an API for retrieving player movement data. **Note, as of 6/25/2016 the NBA was reporting technical issues with the API and no data could be retrieved. However, neilmj has created a repository containing the first half of the 2015-2016 season (https://github.com/neilmj/BasketballData). I plan to move a few games into this project for example/testing purposes.** This project was inspired by the ipython notebook created by Savvas Tjortjoglou (http://savvastjortjoglou.com/nba-play-by-play-movements.html).
 
 
 ## Contribution Guidelines
