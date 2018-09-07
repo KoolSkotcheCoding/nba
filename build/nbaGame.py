@@ -23,12 +23,13 @@ import math
 import nbaMoment
 
 class NBA_game:
-    def __init__(self, rawGame):
+    def __init__(self, rawGame,playByplay=False):
 	self.rawGame=rawGame
-#        self.home=rawGame["events"][0]["home"]
+        self.rawPlaybyPlay=playByplay
+        self.home=rawGame["events"][0]["home"]
 #        self.away=rawGame["events"][0]["visitor"]
 #        self.gameDate=rawGame["gamedate"]
-#        self.gameID=rawGame["gameid"]
+        self.gameID=rawGame["gameid"]
 #        self.gameIndex=['gameClock','shotClock','quarter','eventID','-1'+'_x','-1'+'_y','-1'+'_z']
 #        for playerID in self.players['playerid']:
 #            self.gameIndex.append(str(playerID)+'_x')
@@ -76,6 +77,24 @@ class NBA_game:
         return False,[]
 
 
+
+
+
+
+#note, rawGame (vu motion data) has more events than playByplay data.
+    def getEvent2(self,eventID):
+        for event in self.rawGame["events"]:
+            if event["eventId"]==str(eventID):
+                #gather data
+
+                return event["eventId"]
+                break
+            
+
+
+            
+            
+            
     def nearestToBall(self,eventDF):
         eventPlayers=[player for player in  list(eventDF.columns.levels[0]) if player !=-1 and  player !='time' and player !='near ball']
         idx=pd.IndexSlice
