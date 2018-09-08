@@ -1,3 +1,4 @@
 # for python projects 
 *.pyc
 .ipynb_checkpoints
+*/.ipynb_checkpoints/*
