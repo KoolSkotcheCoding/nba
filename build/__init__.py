@@ -1,4 +1,3 @@
-from .nbaMoment import NBA_moment
-
+from nbaGame import *
 
 
